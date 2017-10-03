@@ -4,30 +4,40 @@
 using namespace std;
 #include <string>
 
-string Variable::value()
+Variable::Variable(string s)
+{
+    _symbol = s;
+}
+
+string Variable::symbol()
+{
+    return _symbol;
+}
+
+int Variable::value()
 {
     return _value;
 }
 
-bool Variable::match(string s)
+bool Variable::match(Number num)
 {
     bool ret = _assignable;
     if (_assignable)
     {
-        _value = s;
+        _value = num.value();
         _assignable = false;
         return true;
     }
     return ret;
 }
+
 bool Variable::match(Atom atom)
 {
-    bool ret = _assignable;
-    if (_assignable ||  _value == atom._symbol)
+    if (_assignable || _symbol == atom.symbol())
     {
-        _value = atom._symbol;
+        _symbol = atom.symbol();
         _assignable = false;
         return true;
     }
-    return ret;
+    return false;
 }

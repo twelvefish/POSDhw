@@ -2,36 +2,30 @@
 #include "variable.h"
 #include "atom.h"
 bool _assignable = true;
-Number::Number(string s, string v)
+
+Number::Number(int v)
 {
-    _symbol = s;
     _value = v;
 }
 
-Number::Number(int num)
+Number::Number(string s)
 {
-    _number = num;
+    _symbol = s;
 }
 
+int Number::value()
+{
+    return _value;
+}
 
 string Number::symbol()
 {
     return _symbol;
 }
 
-int Number::number()
-{
-    return _number;
-}
-
-string Number::value()
-{
-    return _value;
-}
-
 bool Number::match(Number number)
 {
-    return _number == number.number();
+    return _value == number.value();
 }
 
 bool Number::match(Atom atom)
@@ -44,7 +38,7 @@ bool Number::match(Variable variable)
     bool ret = _assignable;
     if (_assignable)
     {
-        _symbol = variable._value;
+        _symbol = variable.symbol();
         _assignable = false;
         return true;
     }

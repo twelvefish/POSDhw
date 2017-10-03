@@ -8,14 +8,18 @@ class Atom;
 class Variable
 {
 public:
-  Variable(string s) : _symbol(s) {}
-  string const _symbol;
-  string value();
+  Variable(string s);
+  
+  int value();
   string symbol();
-  string _value;
-  bool match(string s);
+
+  bool match(Number num);
   bool match(Atom atom);
   bool _assignable = true;
+
+private:
+  string _symbol;
+  int _value;
 };
 
 #endif

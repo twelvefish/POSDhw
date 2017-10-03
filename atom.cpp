@@ -3,17 +3,29 @@
 #include "variable.h"
 using namespace std;
 #include <string>
+
+Atom::Atom(string s)
+{
+    _symbol = s;
+}
+
+string Atom::symbol()
+{
+    return _symbol;
+}
+
 bool Atom::match(Number number)
 {
     return false;
 }
 
-bool Atom::match(Variable variable)
+bool Atom::match(Variable &variable)
 {
     bool ret = variable._assignable;
-    if (variable._assignable)
+    if (variable._assignable || _symbol == variable.symbol())
     {
-        _symbol = variable._value;
+        // variable.symbol() = _symbol;
+        _symbol = variable.symbol();
         variable._assignable = false;
         return true;
     }
