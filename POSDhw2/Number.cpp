@@ -1,21 +1,26 @@
-#include "Number.h"
+#include "number.h"
 #include "variable.h"
 #include "atom.h"
 bool _assignable = true;
-Number::Number(string s, string v)
+
+Number::Number(int v)
+{
+    _value = v;
+}
+
+Number::Number(string s)
 {
     _symbol = s;
-    _value = v;
+}
+
+int Number::value()
+{
+    return _value;
 }
 
 string Number::symbol()
 {
     return _symbol;
-}
-
-string Number::value()
-{
-    return _value;
 }
 
 bool Number::match(Number number)
@@ -33,7 +38,7 @@ bool Number::match(Variable variable)
     bool ret = _assignable;
     if (_assignable)
     {
-        _symbol = variable._value;
+        _symbol = variable.symbol();
         _assignable = false;
         return true;
     }

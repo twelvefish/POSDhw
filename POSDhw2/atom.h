@@ -8,11 +8,15 @@ class Variable;
 class Atom
 {
 public:
-  Atom(string s) : _symbol(s) {}
-  bool operator==(Atom a) { return _symbol == a._symbol; }
-  string _symbol;
+  Atom(string s);
+
+  string symbol();
+
   bool match(Number number);
-  bool match(Variable variable);
+  bool match(Variable &variable);
+
+private:
+  string _symbol;
 };
 
 #endif

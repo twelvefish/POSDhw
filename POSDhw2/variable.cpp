@@ -1,28 +1,43 @@
 #include "atom.h"
-#include "Number.h"
+#include "number.h"
 #include "variable.h"
 using namespace std;
 #include <string>
 
-bool Variable::match(string s)
+Variable::Variable(string s)
+{
+    _symbol = s;
+}
+
+string Variable::symbol()
+{
+    return _symbol;
+}
+
+int Variable::value()
+{
+    return _value;
+}
+
+bool Variable::match(Number num)
 {
     bool ret = _assignable;
     if (_assignable)
     {
-        _value = s;
+        _value = num.value();
         _assignable = false;
         return true;
     }
     return ret;
 }
+
 bool Variable::match(Atom atom)
 {
-    bool ret = _assignable;
-    if (_assignable ||  _value == atom._symbol)
+    if (_assignable || _symbol == atom.symbol())
     {
-        _value = atom._symbol;
+        _symbol = atom.symbol();
         _assignable = false;
         return true;
     }
-    return ret;
+    return false;
 }

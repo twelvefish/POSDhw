@@ -2,24 +2,26 @@
 #define NUMBER_H_INCLUDED
 
 #include <string>
-
+//----------------------------------------------------
 using namespace std;
 class Atom;
 class Variable;
 class Number
 {
-  public:
-    Number(string s, string v);
-    string value();
-    string symbol();
-    bool match(Number number);
-    bool match(Atom atom);
-    bool match(Variable variable);
-    
+public:
+  Number(int v);
+  Number(string s);
 
-  private:
-    string _value;
-    string _symbol;
+  int value();
+  string symbol();
+
+  bool match(Number number);
+  bool match(Atom atom);
+  bool match(Variable variable);
+
+private:
+  int _value;
+  string _symbol;
 };
 
 #endif
