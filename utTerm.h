@@ -1,7 +1,7 @@
 #ifndef UTTERM_H
 #define UTTERM_H
 
-#include "Number.h"
+#include "number.h"
 #include "atom.h"
 #include "variable.h"
 

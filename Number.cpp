@@ -1,4 +1,4 @@
-#include "Number.h"
+#include "number.h"
 #include "variable.h"
 #include "atom.h"
 bool _assignable = true;

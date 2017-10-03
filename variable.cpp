@@ -1,5 +1,5 @@
 #include "atom.h"
-#include "Number.h"
+#include "number.h"
 #include "variable.h"
 using namespace std;
 #include <string>
