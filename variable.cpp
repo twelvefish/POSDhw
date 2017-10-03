@@ -4,6 +4,11 @@
 using namespace std;
 #include <string>
 
+string Variable::value()
+{
+    return _value;
+}
+
 bool Variable::match(string s)
 {
     bool ret = _assignable;
