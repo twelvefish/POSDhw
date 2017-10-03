@@ -1,5 +1,5 @@
 #include "Number.h"
-#include "var.h"
+#include "variable.h"
 #include "atom.h"
 bool _assignable = true;
 Number::Number(string s, string v)

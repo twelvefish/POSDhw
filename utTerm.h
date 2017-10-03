@@ -3,7 +3,7 @@
 
 #include "Number.h"
 #include "atom.h"
-#include "var.h"
+#include "variable.h"
 //test
 
 //test Number.value()

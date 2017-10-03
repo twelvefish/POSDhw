@@ -1,6 +1,6 @@
 #include "atom.h"
 #include "Number.h"
-#include "var.h"
+#include "variable.h"
 using namespace std;
 #include <string>
 bool Atom::match(Number number)

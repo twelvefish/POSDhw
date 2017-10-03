@@ -17,7 +17,7 @@ atom.o: atom.cpp atom.h
 Number.o: Number.cpp Number.h
 	g++ -std=gnu++0x -c Number.cpp
 
-var.o: var.cpp var.h
+var.o: var.cpp variable.h
 	g++ -std=gnu++0x -c var.cpp
 
 clean:	
