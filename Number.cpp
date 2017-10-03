@@ -1,5 +1,5 @@
 #include "Number.h"
-#include "variable.h"
+#include "var.h"
 #include "atom.h"
 bool _assignable = true;
 Number::Number(string s, string v)
@@ -39,12 +39,12 @@ bool Number::match(Atom atom)
     return false;
 }
 
-bool Number::match(Variable variable)
+bool Number::match(Var var)
 {
     bool ret = _assignable;
     if (_assignable)
     {
-        _symbol = variable._value;
+        _symbol = var._value;
         _assignable = false;
         return true;
     }

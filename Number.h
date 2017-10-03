@@ -5,7 +5,7 @@
 
 using namespace std;
 class Atom;
-class Variable;
+class Var;
 class Number
 {
   public:
@@ -16,7 +16,7 @@ class Number
     int number();
     bool match(Number number);
     bool match(Atom atom);
-    bool match(Variable variable);
+    bool match(Var var);
 
   private:
     string _value;

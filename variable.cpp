@@ -1,10 +1,10 @@
 #include "atom.h"
 #include "Number.h"
-#include "variable.h"
+#include "var.h"
 using namespace std;
 #include <string>
 
-bool Variable::match(string s)
+bool Var::match(string s)
 {
     bool ret = _assignable;
     if (_assignable)
@@ -15,7 +15,7 @@ bool Variable::match(string s)
     }
     return ret;
 }
-bool Variable::match(Atom atom)
+bool Var::match(Atom atom)
 {
     bool ret = _assignable;
     if (_assignable ||  _value == atom._symbol)

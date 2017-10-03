@@ -1,14 +1,14 @@
-#ifndef VARIABLE_H
-#define VARIABLE_H
+#ifndef VAR_H
+#define VAR_H
 
 #include <string>
 using std::string;
 class Number;
 class Atom;
-class Variable
+class Var
 {
 public:
-  Variable(string s) : _symbol(s) {}
+  Var(string s) : _symbol(s) {}
   string const _symbol;
   string _value;
   bool match(string s);

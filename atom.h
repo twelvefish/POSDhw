@@ -4,7 +4,7 @@
 #include <string>
 using std::string;
 class Number;
-class Variable;
+class Var;
 class Atom
 {
 public:
@@ -12,7 +12,7 @@ public:
   bool operator==(Atom a) { return _symbol == a._symbol; }
   string _symbol;
   bool match(Number number);
-  bool match(Variable variable);
+  bool match(Var var);
 };
 
 #endif

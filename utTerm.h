@@ -49,7 +49,7 @@ TEST(Number, matchFailureDiffConstant)
 TEST(Number, matchSuccessToVar)
 {
     Number num1(25);
-    Variable var("X");
+    Var var("X");
     ASSERT_TRUE(num1.match(var));
 }
 
@@ -67,7 +67,7 @@ TEST(Atom, matchFailureDiffConstant)
 TEST(Atom, matchSuccessToVar)
 {
     Atom atom("tom");
-    Variable var("X");
+    Var var("X");
     ASSERT_TRUE(atom.match(var));
 }
 
@@ -76,7 +76,7 @@ TEST(Atom, matchSuccessToVar)
 TEST(Atom, matchSuccessToVarInstantedToDiffConstant)
 {
     Atom atom("tom");
-    Variable var("X");
+    Var var("X");
     ASSERT_TRUE(atom.match(var));
     ASSERT_TRUE(var.match(atom));
 }
@@ -85,7 +85,7 @@ TEST(Atom, matchSuccessToVarInstantedToDiffConstant)
 // false.
 TEST(Atom, matchFailureToVarInstantedToDiffConstant)
 {
-    Variable var("X");
+    Var var("X");
     Atom atom("jerry");
     Atom atom1("tom");
     ASSERT_TRUE(var.match(atom));
@@ -96,7 +96,7 @@ TEST(Atom, matchFailureToVarInstantedToDiffConstant)
 // X = 5.
 TEST(Var, matchSuccessToNumber)
 {
-    Variable var("X");
+    Var var("X");
     Number num("Love", "5");
     ASSERT_TRUE(var.match(num.value()));
 }
@@ -105,7 +105,7 @@ TEST(Var, matchSuccessToNumber)
 // false.
 TEST(Var, matchFailureToTwoDiffNumbers)
 {
-    Variable var("X");
+    Var var("X");
     Number num("Love", "5");
     Number num1("apple", "100");
     ASSERT_TRUE(var.match(num.value()));
@@ -116,7 +116,7 @@ TEST(Var, matchFailureToTwoDiffNumbers)
 // false.
 TEST(Var, matchSuccessToAtomThenFailureToNumber)
 {
-    Variable var("X");
+    Var var("X");
     Atom atom1("tom");
     Number num("Love", "25");
     ASSERT_TRUE(var.match(atom1));
@@ -127,7 +127,7 @@ TEST(Var, matchSuccessToAtomThenFailureToNumber)
 TEST(Var, matchSuccessToAtomThenFailureToNumber2)
 {
     Atom atom1("tom");
-    Variable var("X");
+    Var var("X");
     Number num("Love", "25");
     ASSERT_TRUE(atom1.match(var));
     ASSERT_FALSE(num.match(var));
@@ -136,7 +136,7 @@ TEST(Var, matchSuccessToAtomThenFailureToNumber2)
 //true.
 TEST(Var, reAssignTheSameAtom)
 {
-    Variable var("X");
+    Var var("X");
     Atom atom1("tom");
     ASSERT_TRUE(var.match(atom1));
     ASSERT_TRUE(var.match(atom1));
