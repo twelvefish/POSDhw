@@ -8,9 +8,20 @@ Number::Number(string s, string v)
     _value = v;
 }
 
+Number::Number(int num)
+{
+    _number = num;
+}
+
+
 string Number::symbol()
 {
     return _symbol;
+}
+
+int Number::number()
+{
+    return _number;
 }
 
 string Number::value()
@@ -20,7 +31,7 @@ string Number::value()
 
 bool Number::match(Number number)
 {
-    return _value == number.value();
+    return _number == number.number();
 }
 
 bool Number::match(Atom atom)

@@ -23,8 +23,8 @@ TEST(Number, symbol)
 //true.
 TEST(Number, matchSuccess)
 {
-    Number num1("Dog", "25");
-    Number num2("Cat", "25");
+    Number num1(25);
+    Number num2(25);
     ASSERT_TRUE(num1.match(num2));
 }
 
@@ -32,15 +32,15 @@ TEST(Number, matchSuccess)
 //false.
 TEST(Number, matchFailureDiffValue)
 {
-    Number num1("Dog", "25");
-    Number num2("Cat", "0");
+    Number num1(25);
+    Number num2(0);
     ASSERT_FALSE(num1.match(num2));
 }
 //?- 25=tom.
 //false.
 TEST(Number, matchFailureDiffConstant)
 {
-    Number num1("Dog", "25");
+    Number num1(25);
     Atom atom("tom");
     ASSERT_FALSE(num1.match(atom));
 }
@@ -48,7 +48,7 @@ TEST(Number, matchFailureDiffConstant)
 //true.
 TEST(Number, matchSuccessToVar)
 {
-    Number num1("Dog", "25");
+    Number num1(25);
     Variable var("X");
     ASSERT_TRUE(num1.match(var));
 }
