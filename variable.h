@@ -14,17 +14,15 @@ public:
   
   string value();
   string symbol();
-  bool tags();
   void setSymbol(string);
 
   bool match(Number num);
   bool match(Atom atom);
-  void setTag(bool t);
+  bool tag = true;
 
 private:
   string _symbol;
   string _value;
-  bool tag = true ;
 };
 
 #endif
