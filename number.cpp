@@ -38,16 +38,15 @@ bool Number::match(Number number)
 bool Number::match(Atom atom)
 {
     return false;
-}
+}   
 
 bool Number::match(Variable &variable)
 {
-    bool flag = tag;
-    if (tag || variable.symbol() == std::to_string(_number))
+    if (variable.tag || variable.symbol() == std::to_string(_number))
     {
         variable.setSymbol(std::to_string(_number));
         tag = false;
         return true;
     }
-    return flag;
+    return false;
 }
