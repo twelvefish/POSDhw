@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "utTerm.h"
-#include <string>
-using namespace std;
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
