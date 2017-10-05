@@ -5,6 +5,8 @@
         "string": "cpp",
         "xstring": "cpp",
         "system_error": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp"
     }
 }

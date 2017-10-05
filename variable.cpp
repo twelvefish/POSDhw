@@ -24,7 +24,7 @@ void Variable::setSymbol(string s){
 }
 bool Variable::match(Number num)
 {
-    if (tag)
+    if (tag || _value == num.value())
     {
         _value = num.value();
         tag = false;

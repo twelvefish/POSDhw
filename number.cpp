@@ -2,7 +2,10 @@
 #include "variable.h"
 #include "atom.h"
 #include <string>
+#include <iostream>
 using std::string;
+using namespace std;
+
 
 Number::Number(int n)
 {
@@ -46,4 +49,5 @@ bool Number::match(Variable &variable)
         return true;
     }
     return false;
+    
 }
