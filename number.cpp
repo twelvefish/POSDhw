@@ -40,7 +40,7 @@ bool Number::match(Atom atom)
     return false;
 }
 
-bool Number::match(Variable variable)
+bool Number::match(Variable &variable)
 {
     bool flag = tag;
     if (tag)
