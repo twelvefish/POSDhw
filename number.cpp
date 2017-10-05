@@ -2,16 +2,11 @@
 #include "variable.h"
 #include "atom.h"
 #include <string>
-
+#include <sstream>
 using std::string;
 
 bool _assignable = true;
 
-Number::Number(string v)
-{
-    _value = v;
-    _symbol = v;
-}
 
 Number::Number(int n)
 {
@@ -25,11 +20,13 @@ Number::Number(int n)
 
 string Number::value()
 {
+    _value = std::to_string(_number);
     return _value;
 }
 
 string Number::symbol()
 {
+    _symbol = std::to_string(_number);
     return _symbol;
 }
 

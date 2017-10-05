@@ -9,8 +9,6 @@ class Variable;
 class Number
 {
 public:
-  Number(string v);
-  // Number(string s);
   Number(int n);
 
   string value();

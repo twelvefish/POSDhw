@@ -11,15 +11,15 @@ using std::string;
 //test Number.value()
 TEST(Number, ctor)
 {
-    Number num("1314");
+    Number num(1314);
     ASSERT_EQ("1314", num.value());
 }
 
 //test Number.symbol()
 TEST(Number, symbol)
 {
-    Number num("apple");
-    ASSERT_EQ("apple", num.symbol());
+    Number num(520);
+    ASSERT_EQ("520", num.symbol());
 }
 
 //?- 25=25.
