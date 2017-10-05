@@ -31,7 +31,12 @@ void Variable::setValue(string v)
 
 bool Variable::match(Number num)
 {
-    if (tag || _value == num.value())
+    if (_value == num.value())
+    {
+        tag = false;
+        return true;
+    }
+    else if (tag)
     {
         _value = num.value();
         tag = false;
@@ -42,7 +47,13 @@ bool Variable::match(Number num)
 
 bool Variable::match(Atom atom)
 {
-    if (tag || _value == atom.symbol())
+    if (_value == atom.symbol())
+    {
+        tag = false;
+        return true;
+    }
+    
+    if (tag)
     {
         _value = atom.symbol();
         tag = false;

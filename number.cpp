@@ -6,7 +6,6 @@
 using std::string;
 using namespace std;
 
-
 Number::Number(int n)
 {
     _number = n;
@@ -29,7 +28,6 @@ int Number::num()
     return _number;
 }
 
-
 bool Number::match(Number number)
 {
     return _number == number.num();
@@ -38,16 +36,21 @@ bool Number::match(Number number)
 bool Number::match(Atom atom)
 {
     return false;
-}   
+}
 
 bool Number::match(Variable &variable)
 {
-    if (variable.tag || variable.value() == std::to_string(_number))
+    if (variable.value() == std::to_string(_number))
+    {
+        variable.tag = false;
+        return true;
+    }
+
+    if (variable.tag)
     {
         variable.setValue(std::to_string(_number));
         variable.tag = false;
         return true;
     }
     return false;
-    
 }

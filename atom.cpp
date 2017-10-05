@@ -28,7 +28,12 @@ bool Atom::match(Number number)
 
 bool Atom::match(Variable &variable)
 {
-    if (variable.tag || _symbol  == variable.value())
+    if(_symbol  == variable.value()){
+        variable.tag = false;
+        return true;
+    }
+    
+    if (variable.tag)
     {
         variable.setValue(_symbol );
         variable.tag = false;

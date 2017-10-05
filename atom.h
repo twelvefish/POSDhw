@@ -13,6 +13,7 @@ public:
 
   string symbol();
   string value();
+  
   bool match(Number number);
   bool match(Variable &variable);
 
