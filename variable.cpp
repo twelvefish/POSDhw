@@ -15,7 +15,7 @@ string Variable::symbol()
     return _symbol;
 }
 
-int Variable::value()
+string Variable::value()
 {
     return _value;
 }

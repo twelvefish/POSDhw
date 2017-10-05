@@ -12,7 +12,7 @@ class Variable
 public:
   Variable(string s);
   
-  int value();
+  string value();
   string symbol();
 
   bool match(Number num);
@@ -21,7 +21,7 @@ public:
 
 private:
   string _symbol;
-  int _value;
+  string _value;
 };
 
 #endif

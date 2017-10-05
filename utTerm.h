@@ -11,8 +11,8 @@ using std::string;
 //test Number.value()
 TEST(Number, ctor)
 {
-    Number num(1314);
-    ASSERT_EQ(1314, num.value());
+    Number num("1314");
+    ASSERT_EQ("1314", num.value());
 }
 
 //test Number.symbol()

@@ -3,6 +3,7 @@
         "streambuf": "cpp",
         "xutility": "cpp",
         "string": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "system_error": "cpp"
     }
 }

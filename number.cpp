@@ -7,17 +7,23 @@ using std::string;
 
 bool _assignable = true;
 
-Number::Number(int v)
+Number::Number(string v)
 {
     _value = v;
+    _symbol = v;
 }
 
-Number::Number(string s)
+Number::Number(int n)
 {
-    _symbol = s;
+    _number = n;
 }
 
-int Number::value()
+// Number::Number(string s)
+// {
+//     _symbol = s;
+// }
+
+string Number::value()
 {
     return _value;
 }
@@ -27,9 +33,15 @@ string Number::symbol()
     return _symbol;
 }
 
+int Number::num()
+{
+    return _number;
+}
+
+
 bool Number::match(Number number)
 {
-    return _value == number.value();
+    return _number == number.num();
 }
 
 bool Number::match(Atom atom)
