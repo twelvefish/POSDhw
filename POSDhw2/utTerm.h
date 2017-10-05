@@ -4,19 +4,21 @@
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
-
+#include <string>
+#include <iostream>
+using namespace std;
 //test Number.value()
 TEST(Number, ctor)
 {
     Number num(1314);
-    ASSERT_EQ(1314, num.value());
+    ASSERT_EQ("1314", num.value());
 }
 
 //test Number.symbol()
 TEST(Number, symbol)
 {
-    Number num("apple");
-    ASSERT_EQ("apple", num.symbol());
+    Number num(520);
+    ASSERT_EQ("520", num.symbol());
 }
 
 //?- 25=25.

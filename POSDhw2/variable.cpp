@@ -1,8 +1,9 @@
 #include "atom.h"
 #include "number.h"
 #include "variable.h"
-using namespace std;
+
 #include <string>
+using std::string;
 
 Variable::Variable(string s)
 {
@@ -14,29 +15,48 @@ string Variable::symbol()
     return _symbol;
 }
 
-int Variable::value()
+string Variable::value()
 {
     return _value;
+}
+void Variable::setSymbol(string s)
+{
+    _symbol = s;
+}
+
+void Variable::setValue(string v)
+{
+    _value = v;
 }
 
 bool Variable::match(Number num)
 {
-    bool ret = _assignable;
-    if (_assignable)
+    if (_value == num.value())
     {
-        _value = num.value();
-        _assignable = false;
+        tag = false;
         return true;
     }
-    return ret;
+    else if (tag)
+    {
+        _value = num.value();
+        tag = false;
+        return true;
+    }
+    return false;
 }
 
 bool Variable::match(Atom atom)
 {
-    if (_assignable || _symbol == atom.symbol())
+    if (_value == atom.symbol())
     {
-        _symbol = atom.symbol();
-        _assignable = false;
+        tag = false;
+        return true;
+    }
+    
+    if (tag)
+    {
+        _value = atom.symbol();
+        tag = false;
         return true;
     }
     return false;
