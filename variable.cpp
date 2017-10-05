@@ -15,18 +15,19 @@ string Variable::symbol()
     return _symbol;
 }
 
-string Variable::value()
+// string Variable::value()
+// {
+//     return _value;
+// }
+void Variable::setSymbol(string s)
 {
-    return _value;
-}
-void Variable::setSymbol(string s){
     _symbol = s;
 }
 bool Variable::match(Number num)
 {
-    if (tag || _value == num.value())
+    if (tag || _symbol == num.symbol())
     {
-        _value = num.value();
+        _symbol = num.value();
         tag = false;
         return true;
     }

@@ -45,7 +45,6 @@ bool Number::match(Variable &variable)
     if (variable.tag || variable.symbol() == std::to_string(_number))
     {
         variable.setSymbol(std::to_string(_number));
-        cout<<variable.symbol()<<endl;
         variable.tag = false;
         return true;
     }

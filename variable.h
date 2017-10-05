@@ -12,7 +12,7 @@ class Variable
 public:
   Variable(string s);
   
-  string value();
+  // string value();
   string symbol();
   void setSymbol(string);
 
@@ -22,7 +22,7 @@ public:
 
 private:
   string _symbol;
-  string _value;
+  // string _value;
 };
 
 #endif
