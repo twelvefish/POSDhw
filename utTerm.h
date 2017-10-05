@@ -4,7 +4,7 @@
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
-
+using namespace std;
 //test Number.value()
 TEST(Number, ctor)
 {
