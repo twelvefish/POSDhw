@@ -4,8 +4,10 @@
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
-using namespace std;
+
 #include <string>
+using std::string;
+
 //test Number.value()
 TEST(Number, ctor)
 {

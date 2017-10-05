@@ -1,8 +1,10 @@
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
+
 #include <string>
-using namespace std;
+using std::string;
+
 class Number;
 class Atom;
 class Variable

@@ -1,8 +1,9 @@
 #include "atom.h"
 #include "number.h"
 #include "variable.h"
-using namespace std;
+
 #include <string>
+using std::string;
 
 Variable::Variable(string s)
 {

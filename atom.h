@@ -2,7 +2,8 @@
 #define ATOM_H
 
 #include <string>
-using namespace std;
+using std::string;
+
 class Number;
 class Variable;
 class Atom

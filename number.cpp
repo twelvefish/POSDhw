@@ -2,7 +2,9 @@
 #include "variable.h"
 #include "atom.h"
 #include <string>
-using namespace std;
+
+using std::string;
+
 bool _assignable = true;
 
 Number::Number(int v)

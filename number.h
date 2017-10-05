@@ -2,8 +2,8 @@
 #define NUMBER_H_INCLUDED
 
 #include <string>
-//----------------------------------------------------
-using namespace std;
+using std::string;
+
 class Atom;
 class Variable;
 class Number
