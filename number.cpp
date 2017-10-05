@@ -1,6 +1,8 @@
 #include "number.h"
 #include "variable.h"
 #include "atom.h"
+#include <string>
+using namespace std;
 bool _assignable = true;
 
 Number::Number(int v)

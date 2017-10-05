@@ -5,6 +5,7 @@
 #include "atom.h"
 #include "variable.h"
 using namespace std;
+#include <string>
 //test Number.value()
 TEST(Number, ctor)
 {

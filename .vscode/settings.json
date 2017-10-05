@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "streambuf": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "string": "cpp"
     }
 }
