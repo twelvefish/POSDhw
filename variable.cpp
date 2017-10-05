@@ -15,19 +15,25 @@ string Variable::symbol()
     return _symbol;
 }
 
-// string Variable::value()
-// {
-//     return _value;
-// }
+string Variable::value()
+{
+    return _value;
+}
 void Variable::setSymbol(string s)
 {
     _symbol = s;
 }
+
+void Variable::setValue(string v)
+{
+    _value = v;
+}
+
 bool Variable::match(Number num)
 {
-    if (tag || _symbol == num.symbol())
+    if (tag || _value == num.value())
     {
-        _symbol = num.value();
+        _value = num.value();
         tag = false;
         return true;
     }
@@ -36,9 +42,9 @@ bool Variable::match(Number num)
 
 bool Variable::match(Atom atom)
 {
-    if (tag || _symbol == atom.symbol())
+    if (tag || _value == atom.symbol())
     {
-        _symbol = atom.symbol();
+        _value = atom.symbol();
         tag = false;
         return true;
     }

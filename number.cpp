@@ -42,9 +42,9 @@ bool Number::match(Atom atom)
 
 bool Number::match(Variable &variable)
 {
-    if (variable.tag || variable.symbol() == std::to_string(_number))
+    if (variable.tag || variable.value() == std::to_string(_number))
     {
-        variable.setSymbol(std::to_string(_number));
+        variable.setValue(std::to_string(_number));
         variable.tag = false;
         return true;
     }

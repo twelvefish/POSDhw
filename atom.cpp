@@ -15,6 +15,12 @@ string Atom::symbol()
     return _symbol;
 }
 
+string Atom::value()
+{
+    return _value;
+}
+
+
 bool Atom::match(Number number)
 {
     return false;
@@ -22,9 +28,9 @@ bool Atom::match(Number number)
 
 bool Atom::match(Variable &variable)
 {
-    if (variable.tag || _symbol == variable.symbol())
+    if (variable.tag || _symbol  == variable.value())
     {
-        variable.setSymbol(_symbol);
+        variable.setValue(_symbol );
         variable.tag = false;
         return true;
     }
