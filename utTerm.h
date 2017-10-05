@@ -6,8 +6,10 @@
 #include "variable.h"
 
 #include <string>
+#include <iostream>
 using std::string;
-
+using std::cout;
+using namespace std;
 //test Number.value()
 TEST(Number, ctor)
 {
@@ -54,7 +56,9 @@ TEST(Number, matchSuccessToVar)
 {
     Number num(25);
     Variable var("X");
+    cout<<var.symbol()<<endl;
     ASSERT_TRUE(num.match(var));
+    cout<<var.symbol()<<endl;
 }
 
 //?- tom=25.
