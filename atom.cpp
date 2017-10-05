@@ -25,7 +25,6 @@ bool Atom::match(Variable &variable)
     bool ret = variable._assignable;
     if (variable._assignable || _symbol == variable.symbol())
     {
-        // variable.symbol() = _symbol;
         _symbol = variable.symbol();
         variable._assignable = false;
         return true;

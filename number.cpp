@@ -49,7 +49,7 @@ bool Number::match(Atom atom)
 bool Number::match(Variable variable)
 {
     bool ret = _assignable;
-    if (_assignable)
+    if (_assignable || _symbol == variable.symbol())
     {
         _symbol = variable.symbol();
         _assignable = false;
