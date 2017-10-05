@@ -17,7 +17,7 @@ public:
 
   bool match(Number number);
   bool match(Atom atom);
-  bool match(Variable variable);
+  bool match(Variable &variable);
 
 private:
   string _value;

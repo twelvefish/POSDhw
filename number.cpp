@@ -2,7 +2,6 @@
 #include "variable.h"
 #include "atom.h"
 #include <string>
-#include <sstream>
 using std::string;
 
 bool _assignable = true;
@@ -46,7 +45,7 @@ bool Number::match(Atom atom)
     return false;
 }
 
-bool Number::match(Variable variable)
+bool Number::match(Variable &variable)
 {
     bool ret = _assignable;
     if (_assignable || _symbol == variable.symbol())
