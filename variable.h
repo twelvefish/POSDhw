@@ -14,10 +14,11 @@ public:
   
   string value();
   string symbol();
+  void setSymbol(string);
 
   bool match(Number num);
   bool match(Atom atom);
-  bool _assignable = true;
+  bool tag = true;
 
 private:
   string _symbol;

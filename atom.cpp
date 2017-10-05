@@ -22,12 +22,12 @@ bool Atom::match(Number number)
 
 bool Atom::match(Variable &variable)
 {
-    bool ret = variable._assignable;
-    if (variable._assignable || _symbol == variable.symbol())
+    bool flag = variable.tag;
+    if (variable.tag || _symbol == variable.symbol())
     {
-        _symbol = variable.symbol();
-        variable._assignable = false;
+        variable.setSymbol(_symbol);
+        variable.tag = false;
         return true;
     }
-    return ret;
+    return flag;
 }

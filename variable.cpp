@@ -19,25 +19,28 @@ string Variable::value()
 {
     return _value;
 }
-
+void Variable::setSymbol(string s){
+    _symbol = s;
+}
 bool Variable::match(Number num)
 {
-    bool ret = _assignable;
-    if (_assignable)
+    bool flag = tag;
+    if (tag)
     {
         _value = num.value();
-        _assignable = false;
+        tag = false;
         return true;
     }
-    return ret;
+    return flag;
 }
 
 bool Variable::match(Atom atom)
 {
-    if (_assignable || _symbol == atom.symbol())
+    if(_value == atom.symbol()) return true;
+    if (tag || _symbol == atom.symbol())
     {
         _symbol = atom.symbol();
-        _assignable = false;
+        tag = false;
         return true;
     }
     return false;

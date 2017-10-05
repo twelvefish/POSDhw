@@ -4,18 +4,13 @@
 #include <string>
 using std::string;
 
-bool _assignable = true;
+bool tag = true;
 
 
 Number::Number(int n)
 {
     _number = n;
 }
-
-// Number::Number(string s)
-// {
-//     _symbol = s;
-// }
 
 string Number::value()
 {
@@ -45,14 +40,14 @@ bool Number::match(Atom atom)
     return false;
 }
 
-bool Number::match(Variable &variable)
+bool Number::match(Variable variable)
 {
-    bool ret = _assignable;
-    if (_assignable || _symbol == variable.symbol())
+    bool flag = tag;
+    if (tag || _symbol == variable.symbol())
     {
-        _symbol = variable.symbol();
-        _assignable = false;
+        variable.setSymbol(_symbol);
+        tag = false;
         return true;
     }
-    return ret;
+    return flag;
 }
