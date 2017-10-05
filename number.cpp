@@ -4,9 +4,6 @@
 #include <string>
 using std::string;
 
-bool tag = true;
-
-
 Number::Number(int n)
 {
     _number = n;
@@ -42,10 +39,10 @@ bool Number::match(Atom atom)
 
 bool Number::match(Variable &variable)
 {
-    if (variable.tag || variable.symbol() == std::to_string(_number))
+    if (variable.tags() || variable.symbol() == std::to_string(_number))
     {
         variable.setSymbol(std::to_string(_number));
-        variable.tag = false;
+        variable.setTag(false);
         return true;
     }
     return false;
