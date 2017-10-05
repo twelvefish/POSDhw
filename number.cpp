@@ -43,9 +43,9 @@ bool Number::match(Atom atom)
 bool Number::match(Variable variable)
 {
     bool flag = tag;
-    if (tag || _symbol == variable.symbol())
+    if (tag)
     {
-        variable.setSymbol(_symbol);
+        variable.setSymbol(std::to_string(_number));
         tag = false;
         return true;
     }

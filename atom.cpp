@@ -23,7 +23,7 @@ bool Atom::match(Number number)
 bool Atom::match(Variable &variable)
 {
     bool flag = variable.tag;
-    if (variable.tag || _symbol == variable.symbol())
+    if (flag || _symbol == variable.symbol())
     {
         variable.setSymbol(_symbol);
         variable.tag = false;
