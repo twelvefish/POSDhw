@@ -1,17 +1,17 @@
+#include "atom.h"
 #include "number.h"
 #include "variable.h"
-#include "atom.h"
+
 #include <string>
-#include <iostream>
-using std::string;
+#include <sstream>
 using namespace std;
 
-Number::Number(int n)
+Number::Number(double n)
 {
     _number = n;
 }
 
-string Number::value()
+string  Number::value()
 {
     _value = std::to_string(_number);
     return _value;
@@ -23,7 +23,7 @@ string Number::symbol()
     return _symbol;
 }
 
-int Number::num()
+double Number::num()
 {
     return _number;
 }

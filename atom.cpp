@@ -3,7 +3,7 @@
 #include "variable.h"
 
 #include <string>
-using std::string;
+using namespace std;
 
 Atom::Atom(string s)
 {

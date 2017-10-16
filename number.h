@@ -9,11 +9,11 @@ class Variable;
 class Number
 {
 public:
-  Number(int n);
+  Number(double n);
 
   string value();
   string symbol();
-  int num();
+  double num();
 
   bool match(Number number);
   bool match(Atom atom);
@@ -22,7 +22,7 @@ public:
 private:
   string _value;
   string _symbol;
-  int _number;
+  double _number;
 };
 
 #endif

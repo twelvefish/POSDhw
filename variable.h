@@ -19,11 +19,13 @@ public:
 
   bool match(Number num);
   bool match(Atom atom);
+  bool match(Variable &var);
   bool tag = true;
 
 private:
   string _symbol;
   string _value;
+  Variable *test = NULL;
 };
 
 #endif
