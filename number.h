@@ -2,25 +2,28 @@
 #define NUMBER_H_INCLUDED
 
 #include <string>
+#include "term.h"
 using std::string;
 
 class Atom;
 class Variable;
-class Number
+class Number : public Term
 {
 public:
   Number(double n);
 
-  string value();
-  string symbol();
+  // string value() const;
+  string symbol() const;
   double num();
 
-  bool match(Number number);
-  bool match(Atom atom);
-  bool match(Variable &variable);
+  bool match(Term &term);
+  // bool match(Number number);
+  // bool match(Atom atom);
+  // bool match(Variable &variable);
 
 private:
-  string _value;
+  // string _value;
+  string text;
   string _symbol;
   double _number;
 };
