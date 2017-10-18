@@ -20,6 +20,10 @@ string Variable::symbol() const
 
 string Variable::value() const
 {
+    if (_value == "")
+    {
+        return _symbol;
+    }
     return _value;
 }
 void Variable::setSymbol(string s)
