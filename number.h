@@ -24,6 +24,7 @@ public:
 private:
   // string _value;
   string text;
+  string text2;
   string _symbol;
   double _number;
 };

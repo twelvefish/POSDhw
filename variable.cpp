@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
 using namespace std;
 
 Variable::Variable(string s)
@@ -35,29 +37,36 @@ bool Variable::match(Term &term)
     if (_value != "" && _value != term.value())
         return false;
 
-    Variable *var = dynamic_cast<Variable *>(&term);
+    bool flag = tag;
+    // Variable *var = dynamic_cast<Variable *>(&term);
 
-    if (var)
+    if (tag)
     {
-         _value = var->_value;
-        return true;
-    }
-    else
-    {
-        if (_value == term.value())
+        _value = term.value();
+        tag = false;
+
+        // if (load.size() != 0)
+        // {
+        //     for (int i = 0; i < load.size(); i++)
+        //     {
+        //         load[i]->match(term);
+        //     }
+        // }
+        if (arr[0] != NULL)
         {
-            tag = false;
-            return true;
-        }
-        else if (tag)
-        {
-            _value = term.value();
-            tag = false;
-            return true;
+            for (int i = 0; i < 5; i++)
+            {
+                if (arr[i] != NULL)
+                {
+
+                    // cout << this->symbol() << "&&&" << i << endl;
+                    arr[i]->match(term);
+                }
+            }
         }
     }
 
-    return false;
+    return flag;
 }
 
 // bool Variable::match(Number num)
@@ -94,10 +103,27 @@ bool Variable::match(Term &term)
 //     return false;
 // }
 
-// bool Variable::match(Variable &var)
-// {
-//     if( _value != "") return false;
+bool Variable::match(Variable &var)
+{
+    bool flag = tag;
+    if (_value != "")
+        return false;
 
-//     test = &var;
-//     return true;
-// }
+    if (tag)
+    {
+        if (var.tag)
+        {
+            arr[index++] = &var;
+            var.arr[var.index++] = this;
+            // load.push_back(&var);
+            // var.load.push_back(this);
+        }
+        else
+        {
+            _value = var.value();
+            tag = false;
+        }
+    }
+
+    return flag;
+}

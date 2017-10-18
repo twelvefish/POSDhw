@@ -3,6 +3,7 @@
 
 #include "term.h"
 #include <string>
+#include <vector>
 using std::string;
 
 class Number;
@@ -20,13 +21,15 @@ public:
   bool match(Term &term);
   // bool match(Number num);
   // bool match(Atom atom);
-  // bool match(Variable &var);
+  bool match(Variable &var);
   bool tag = true;
+  // vector <Variable *> load;
+  Variable *arr[5] = {};
+  int index = 0;
 
 private:
   string _symbol;
   string _value;
-  Term* index;
 };
 
 #endif

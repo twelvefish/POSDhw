@@ -11,7 +11,16 @@ Number::Number(double n)
 {
     _number = n;
     text = to_string(_number);
-    _symbol = to_string(_number).substr(0, text.find("0"));
+    text2 = to_string(_number).substr(0, text.find("0"));
+
+    if (text2.find_last_of(".") == text2.size() - 1)
+    {
+        _symbol = to_string(_number).substr(0, text2.find("."));
+    }
+    else
+    {
+        _symbol = text2;
+    }
 }
 
 // string Number::value() const

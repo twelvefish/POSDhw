@@ -50,7 +50,7 @@ TEST(Variable, varY_to_varX_and_num1_to_varX)
   Number num(1);
   ASSERT_TRUE(X.match(Y));
   ASSERT_TRUE(X.match(num));
-  ASSERT_TRUE(Y.match(num));
+  ASSERT_EQ("1", Y.value());
 }
 
 // ?- X=Y, Y=1.
@@ -62,7 +62,7 @@ TEST(Variable, varY_to_varX_and_num1_to_varY)
   Number num(1);
   ASSERT_TRUE(X.match(Y));
   ASSERT_TRUE(Y.match(num));
-  ASSERT_TRUE(X.match(num));
+  ASSERT_EQ("1", X.value());
 }
 
 // ?- X=X, X=1.
@@ -73,7 +73,7 @@ TEST(Variable, varX_match_varX_and_num1_to_varX)
   Number num(1);
   ASSERT_TRUE(X.match(X));
   ASSERT_TRUE(X.match(num));
-  ASSERT_TRUE(X.match(num));
+  ASSERT_EQ("1", X.value());
 }
 
 // ?- Y=1, X=Y.
@@ -85,7 +85,7 @@ TEST(Variable, num1_to_varY_and_varX_match_varY)
   Number num(1);
   ASSERT_TRUE(Y.match(num));
   ASSERT_TRUE(X.match(Y));
-  ASSERT_TRUE(X.match(num));
+  ASSERT_EQ("1", X.value());
 }
 
 // ?- X=Y, Y=Z, Z=1
@@ -99,9 +99,12 @@ TEST(Variable, num1_to_varZ_to_varY_to_varX)
   ASSERT_TRUE(X.match(Y));
   ASSERT_TRUE(Y.match(Z));
   ASSERT_TRUE(Z.match(num));
-  ASSERT_TRUE(X.match(num));
-  ASSERT_TRUE(Y.match(num));
-  ASSERT_TRUE(Z.match(num));
+  cout << X.value() << endl;
+  cout << Y.value() << endl;
+  cout << Z.value() << endl;
+  ASSERT_EQ("1", X.value());
+  ASSERT_EQ("1", Y.value());
+  ASSERT_EQ("1", Z.value());
 }
 
 // ?- X=Y, X=Z, Z=1
@@ -115,9 +118,9 @@ TEST(Variable, num1_to_varZ_to_varX_and_varY_to_varX)
   ASSERT_TRUE(X.match(Y));
   ASSERT_TRUE(X.match(Z));
   ASSERT_TRUE(Z.match(num));
-  ASSERT_TRUE(X.match(num));
-  ASSERT_TRUE(Y.match(num));
-  ASSERT_TRUE(Z.match(num));
+  ASSERT_EQ("1", X.value());
+  ASSERT_EQ("1", Y.value());
+  ASSERT_EQ("1", Z.value());
 }
 
 // Give there is a Struct s contains Variable X
@@ -145,15 +148,14 @@ TEST(Variable, Struct1)
 TEST(Variable, Struct2)
 {
   Variable X("X");
-  vector<Term *> v ={&X};
+  vector<Term *> v = {&X};
   Struct s(Atom("s"), v);
   Variable Y("Y");
   ASSERT_TRUE(Y.match(s));
   Atom teddy("teddy");
   ASSERT_TRUE(X.match(teddy));
   ASSERT_EQ("Y", Y.symbol());
-  // ASSERT_EQ("s(teddy)",Y.value()); 
-
+  // ASSERT_EQ("s(teddy)",Y.value());
 }
 
 #endif
