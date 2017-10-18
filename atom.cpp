@@ -21,7 +21,7 @@ string Atom::symbol() const
 // }
 
 bool Atom::match(Term &term){
-    return symbol() == term.symbol();
+    return symbol() == term.value();
 }
 
 // bool Atom::match(Number number)

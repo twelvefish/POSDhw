@@ -40,7 +40,10 @@ double Number::num()
 
 bool Number::match(Term &term)
 {
-    return symbol() == term.symbol();
+    // cout<< symbol() <<endl;
+    // cout<< term.value() <<endl;
+
+    return symbol() == term.value();
 }
 
 // bool Number::match(Number number)
