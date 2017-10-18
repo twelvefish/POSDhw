@@ -20,11 +20,17 @@ string Atom::symbol() const
 //     return symbol() ;
 // }
 
-bool Atom::match(Term &term){
-    // cout<< "$$$"<<endl;
-     if ( term.isVariable == true) {
-        //  cout<< "888"<<endl;
-      return term.match(*this);
+bool Atom::match(Term &term)
+{
+    
+
+    if (term.isVariable == true)
+    {
+        // Variable *ps = dynamic_cast<Variable *>(&term);
+        Atom atom(_symbol);
+        return term.match(atom);
+
+        // return term.match(*this);
     }
     return symbol() == term.symbol();
 }
@@ -39,7 +45,7 @@ bool Atom::match(Term &term){
 //         variable.tag = false;
 //         return true;
 //     }
-    
+
 //     if (variable.tag)
 //     {
 //         variable.setValue(_symbol );

@@ -161,9 +161,9 @@ TEST(Variable, Struct2)
   vector<Term *> v = {&X};
   Struct s(Atom("s"), v);
   Variable Y("Y");
-  ASSERT_TRUE(Y.match(s));
+  ASSERT_TRUE(Y.match(s)); // Y value = s(X) 
   Atom teddy("teddy");
-  ASSERT_TRUE(X.match(teddy));
+  ASSERT_TRUE(X.match(teddy));  // X value = teddy s value = s(teddy)
   ASSERT_EQ("Y", Y.symbol());
   // ASSERT_EQ("s(teddy)",Y.value());
 }

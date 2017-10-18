@@ -33,13 +33,31 @@ public:
     ret += _args[_args.size() - 1]->symbol() + ")";
     return ret;
   }
+
+  string value() const
+  {
+    string ret = _name.symbol() + "(";
+    for (int i = 0; i < _args.size() - 1; i++)
+    {
+      ret += _args[i]->value() + ", ";
+    }
+    // cout << "_args :" << _args.size() << endl;
+    ret += _args[_args.size() - 1]->value() + ")";
+    return ret;
+  }
   bool match(Term &term)
   {
+    cout << "123" << endl;
     Struct *ps = dynamic_cast<Struct *>(&term);
     if (ps)
     {
+      cout << "456" << endl;
       if (!_name.match(ps->_name))
+      {
+        cout << "789" << endl;
         return false;
+      }
+      cout << "000" << endl;
       if (_args.size() != ps->_args.size())
         return false;
       for (int i = 0; i < _args.size(); i++)

@@ -23,7 +23,6 @@ public:
   // bool match(Atom atom);
   bool match(Variable &var);
   bool tag = true;
-  // vector <Variable *> load;
   Variable *arr[5] = {};
   int index = 0;
 

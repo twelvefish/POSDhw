@@ -24,6 +24,9 @@ string Variable::value() const
     {
         return _symbol;
     }
+    // if(_value == "s(X)"){
+    //     return "s(teddy)";
+    // }
     return _value;
 }
 void Variable::setSymbol(string s)
@@ -38,7 +41,7 @@ void Variable::setValue(string v)
 
 bool Variable::match(Term &term)
 {
-    if ( _value == term.value())
+    if (_value == term.value())
         return true;
 
     bool flag = tag;
@@ -46,16 +49,12 @@ bool Variable::match(Term &term)
 
     if (tag)
     {
+        // cout << "###### " << term.value() << endl;
+        // cout << "###### " << term.symbol() << endl;
         _value = term.value();
         tag = false;
 
-        // if (load.size() != 0)
-        // {
-        //     for (int i = 0; i < load.size(); i++)
-        //     {
-        //         load[i]->match(term);
-        //     }
-        // }
+       
         if (arr[0] != NULL)
         {
             for (int i = 0; i < 5; i++)
@@ -110,7 +109,8 @@ bool Variable::match(Term &term)
 bool Variable::match(Variable &var)
 {
     bool flag = tag;
-    if (_value == ""){
+    if (_value == "")
+    {
         _value = var.symbol();
     }
 
@@ -120,8 +120,6 @@ bool Variable::match(Variable &var)
         {
             arr[index++] = &var;
             var.arr[var.index++] = this;
-            // load.push_back(&var);
-            // var.load.push_back(this);
         }
         else
         {
