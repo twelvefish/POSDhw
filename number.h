@@ -26,6 +26,7 @@ private:
   string text;
   string text2;
   string _symbol;
+  bool isVariable = true;
   double _number;
 };
 

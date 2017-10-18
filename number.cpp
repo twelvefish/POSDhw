@@ -40,10 +40,13 @@ double Number::num()
 
 bool Number::match(Term &term)
 {
-    // cout<< symbol() <<endl;
-    // cout<< term.value() <<endl;
+    // cout<< "$$$"<<endl;
+     if ( term.isVariable == true) {
+        //  cout<< "888"<<endl;
+      return term.match(*this);
+    }
 
-    return symbol() == term.value();
+    return symbol() == term.symbol();
 }
 
 // bool Number::match(Number number)

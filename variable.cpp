@@ -38,8 +38,8 @@ void Variable::setValue(string v)
 
 bool Variable::match(Term &term)
 {
-    if (_value != "" && _value != term.value())
-        return false;
+    if ( _value == term.value())
+        return true;
 
     bool flag = tag;
     // Variable *var = dynamic_cast<Variable *>(&term);
@@ -110,8 +110,9 @@ bool Variable::match(Term &term)
 bool Variable::match(Variable &var)
 {
     bool flag = tag;
-    if (_value != "")
-        return false;
+    if (_value == ""){
+        _value = var.symbol();
+    }
 
     if (tag)
     {

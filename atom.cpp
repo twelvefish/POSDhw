@@ -1,7 +1,7 @@
 #include "atom.h"
 #include "number.h"
 #include "variable.h"
-
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -21,9 +21,13 @@ string Atom::symbol() const
 // }
 
 bool Atom::match(Term &term){
-    return symbol() == term.value();
+    // cout<< "$$$"<<endl;
+     if ( term.isVariable == true) {
+        //  cout<< "888"<<endl;
+      return term.match(*this);
+    }
+    return symbol() == term.symbol();
 }
-
 // bool Atom::match(Number number)
 // {
 //     return false;

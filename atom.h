@@ -22,6 +22,7 @@ public:
 private:
   string _symbol;
   string _value;
+  bool isVariable = false;
 };
 
 #endif

@@ -19,6 +19,7 @@ TEST(Variable, matching)
   Atom tom("tom");
   Variable X("X");
   ASSERT_TRUE(X.match(tom));
+  ASSERT_TRUE(X.match(tom));
   ASSERT_EQ("tom", X.value());
   ASSERT_TRUE(tom.match(X));
 }
@@ -30,6 +31,8 @@ TEST(Variable, haveValue)
   Variable X("X");
   ASSERT_TRUE(X.match(tom));
   ASSERT_FALSE(X.match(jerry));
+  ASSERT_TRUE(tom.match(X));
+  ASSERT_FALSE(jerry.match(X));
 }
 
 // ?- X=2.7182.
@@ -41,7 +44,6 @@ TEST(Variable, numE_to_varX)
   ASSERT_TRUE(X.match(num));
   ASSERT_EQ("2.7182", X.value());
   ASSERT_TRUE(num.match(X));
-
 }
 
 // ?- X=Y, X=1.
@@ -52,6 +54,8 @@ TEST(Variable, varY_to_varX_and_num1_to_varX)
   Variable Y("Y");
   Number num(1);
   ASSERT_TRUE(X.match(Y));
+  ASSERT_EQ("Y", X.value());
+  
   ASSERT_TRUE(X.match(num));
   ASSERT_EQ("1", Y.value());
 }
@@ -64,6 +68,7 @@ TEST(Variable, varY_to_varX_and_num1_to_varY)
   Variable Y("Y");
   Number num(1);
   ASSERT_TRUE(X.match(Y));
+  ASSERT_EQ("Y", X.value());
   ASSERT_TRUE(Y.match(num));
   ASSERT_EQ("1", X.value());
 }
@@ -100,6 +105,7 @@ TEST(Variable, num1_to_varZ_to_varY_to_varX)
   Variable Z("Z");
   Number num(1);
   ASSERT_TRUE(X.match(Y));
+  ASSERT_EQ("Y", X.value());
   ASSERT_TRUE(Y.match(Z));
   ASSERT_TRUE(Z.match(num));
   cout << X.value() << endl;
@@ -119,6 +125,7 @@ TEST(Variable, num1_to_varZ_to_varX_and_varY_to_varX)
   Variable Z("Z");
   Number num(1);
   ASSERT_TRUE(X.match(Y));
+  ASSERT_EQ("Y", X.value());
   ASSERT_TRUE(X.match(Z));
   ASSERT_TRUE(Z.match(num));
   ASSERT_EQ("1", X.value());

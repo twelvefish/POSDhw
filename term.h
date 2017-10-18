@@ -12,6 +12,7 @@ class Term
     {
         return symbol();
     };
+    bool isVariable;
 };
 
 #endif
