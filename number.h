@@ -1,15 +1,14 @@
-#ifndef ATOM_H
-#define ATOM_H
+#ifndef NUMBER_H
+#define NUMBER_H
 
 #include <string>
 #include <sstream>
 using std::string;
-
-class Atom : public Term
+class Number : public Term
 {
 public:
-  Atom(string s) : Term(s) {}
-  bool isAtom = true;
+  Number(double db) : Term(db) {}
+  bool isNumber = true;
   bool match(Term &a)
   {
     if (a.isList)

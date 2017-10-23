@@ -23,8 +23,10 @@ public:
     }
     return _inst->match(term);
   }
-private:
+  bool isVariable = true;
   Term * _inst;
+private:
+  
 };
 
 #endif
