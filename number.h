@@ -7,8 +7,9 @@ using std::string;
 class Number : public Term
 {
 public:
-  Number(double db) : Term(db) {}
-  bool isNumber = true;
+  Number(double db) : Term(db) {
+    isNumber = true;
+  }
   bool match(Term &a)
   {
     if (a.isList)

@@ -31,8 +31,8 @@ public:
     {
       std::vector<Term *>::const_iterator it = _elements.begin();
       for (; it != _elements.end() - 1; ++it)
-        ret += (*it)->symbol() + ", ";
-      ret += (*it)->symbol();
+        ret += (*it)->value() + ", ";
+      ret += (*it)->value();
     }
     ret += "]";
     return ret;
@@ -53,7 +53,12 @@ public:
       {
         for (int i = 0; i < list.size(); i++)
         {
-          if (_elements[i]->match(*list._elements[i]) == false)
+          if (_elements[i]->isNumber == true && list._elements[i]->isVariable == true)
+          {
+            // list._elements[i]->_symbol =_elements[i]->symbol();
+            return true;
+          }
+          else if (_elements[i]->match(*list._elements[i]) == false)
           {
             return false;
           }
@@ -103,10 +108,11 @@ public:
   }
   List *tail() const
   {
-    if(_elements.size()==0){
-        throw string("Accessing tail in an empty list");
+    if (_elements.size() == 0)
+    {
+      throw string("Accessing tail in an empty list");
     }
-    
+
     List *ls;
     vector<Term *> args;
     for (int i = 1; i < _elements.size(); i++)

@@ -17,6 +17,7 @@ public:
   }
   bool isList = false;
   bool isVariable = false;
+  bool isNumber = false;
   virtual int size() { return 0; }
   virtual Term count(int &i) { return 0; }
 

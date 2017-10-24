@@ -171,6 +171,8 @@ TEST(List, matchToVarToAtominListShouldSucceed)
   List ls(arr);
   List ls1(arr1);
   ASSERT_TRUE(ls.match(ls1));
+  ASSERT_TRUE(ls1.match(ls));
+  // ASSERT_EQ("[496, X, terence_tao]", ls1.value());
   ASSERT_EQ("8128", X.value());
 }
 
@@ -179,18 +181,18 @@ TEST(List, matchToVarToAtominListShouldSucceed)
 // X = alan_mathison_turing.
 TEST(List, matchVarinListToAtomShouldSucceed)
 {
-  // Number num(496);
-  // Variable X("X");
-  // Variable Y("Y");
-  // Atom terence_tao("terence_tao");
-  // Atom alan_mathison_turing("alan_mathison_turing");
-  // vector<Term *> arr = {&num, &X, &terence_tao};
-  // List ls(arr);
-  // ASSERT_TRUE(X.match(alan_mathison_turing));
-  // ASSERT_TRUE(Y.match(ls));
-  // cout << Y.value() <<endl;
-  // cout << ls.value() <<endl;
-  // ASSERT_EQ("[496, alan_mathison_turing, terence_tao]", ls.value());
+  Number num(496);
+  Variable X("X");
+  Variable Y("Y");
+  Atom terence_tao("terence_tao");
+  Atom alan_mathison_turing("alan_mathison_turing");
+  vector<Term *> arr = {&num, &X, &terence_tao};
+  List ls(arr);
+  ASSERT_TRUE(Y.match(ls));
+  ASSERT_TRUE(X.match(alan_mathison_turing));
+  cout << Y.value() <<endl;
+  cout << ls.value() <<endl;
+  ASSERT_EQ("[496, alan_mathison_turing, terence_tao]", ls.value());
 }
 
 // Example:
