@@ -172,7 +172,6 @@ TEST(List, matchToVarToAtominListShouldSucceed)
   List ls1(arr1);
   ASSERT_TRUE(ls.match(ls1));
   ASSERT_TRUE(ls1.match(ls));
-  // ASSERT_EQ("[496, X, terence_tao]", ls1.value());
   ASSERT_EQ("8128", X.value());
 }
 
@@ -192,7 +191,7 @@ TEST(List, matchVarinListToAtomShouldSucceed)
   ASSERT_TRUE(X.match(alan_mathison_turing));
   cout << Y.value() <<endl;
   cout << ls.value() <<endl;
-  ASSERT_EQ("[496, alan_mathison_turing, terence_tao]", ls.value());
+  ASSERT_EQ("[496, alan_mathison_turing, terence_tao]", Y.value());
 }
 
 // Example:

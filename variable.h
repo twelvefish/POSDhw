@@ -30,13 +30,13 @@ public:
         {
           return false;
         }
-        else
-        {
-          term.match(*this);
-          _symbol = term.symbol();
-        }
       }
-      return true;
+      if (!_inst)
+      {
+        _inst = &term;
+        return true;
+      }
+      return _inst->match(term);
     }
 
     if (this == &term)
