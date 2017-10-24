@@ -3,6 +3,7 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
 using std::string;
 
 class Term
@@ -10,10 +11,14 @@ class Term
 public:
   virtual string symbol() const { return _symbol; }
   virtual string value() const { return symbol(); }
-  virtual bool match(Term &a){
+  virtual bool match(Term &a)
+  {
     return _symbol == a.symbol();
   }
   bool isList = false;
+  bool isVariable = false;
+  virtual int size() { return 0; }
+  virtual Term count(int &i) { return 0; }
 
 protected:
   Term() : _symbol("") {}

@@ -129,32 +129,49 @@ TEST(List, matchToVarOccuredInListShouldFail)
   Atom terence_tao("terence_tao");
   vector<Term *> arr = {&num, &X, &terence_tao};
   List ls(arr);
-  // ASSERT_FALSE(X.match(ls));
-  // ASSERT_FALSE(ls.match(X));
+  ASSERT_FALSE(X.match(ls));
+  ASSERT_FALSE(ls.match(X));
 }
 
 // ?- [496, X, terence_tao] = [496, X, terence_tao].
 // true.
 TEST(List, matchToSameListShouldSucceed)
 {
-   Number num(496);
+  Number num(496);
   Variable X("X");
   Atom terence_tao("terence_tao");
   vector<Term *> arr = {&num, &X, &terence_tao};
   List ls(arr);
   ASSERT_TRUE(ls.match(ls));
 }
-
 // ?- [496, X, terence_tao] = [496, Y, terence_tao].
 // true.
 TEST(List, matchToSameListWithDiffVarNameShouldSucceed)
 {
+  Number num(496);
+  Variable X("X");
+  Variable Y("Y");
+  Atom terence_tao("terence_tao");
+  vector<Term *> arr = {&num, &X, &terence_tao};
+  vector<Term *> arr1 = {&num, &Y, &terence_tao};
+  List ls(arr);
+  List ls1(arr1);
+  ASSERT_TRUE(ls.match(ls1));
 }
-
 // ?- [496, X, terence_tao] = [496, 8128, terence_tao].
 // X = 8128.
 TEST(List, matchToVarToAtominListShouldSucceed)
 {
+  Number num(496);
+  Variable X("X");
+  Number num1(8128);
+  Atom terence_tao("terence_tao");
+  vector<Term *> arr = {&num, &X, &terence_tao};
+  vector<Term *> arr1 = {&num, &num1, &terence_tao};
+  List ls(arr);
+  List ls1(arr1);
+  ASSERT_TRUE(ls.match(ls1));
+  ASSERT_EQ("8128", X.value());
 }
 
 // ?- Y = [496, X, terence_tao], X = alan_mathison_turing.
@@ -162,6 +179,18 @@ TEST(List, matchToVarToAtominListShouldSucceed)
 // X = alan_mathison_turing.
 TEST(List, matchVarinListToAtomShouldSucceed)
 {
+  // Number num(496);
+  // Variable X("X");
+  // Variable Y("Y");
+  // Atom terence_tao("terence_tao");
+  // Atom alan_mathison_turing("alan_mathison_turing");
+  // vector<Term *> arr = {&num, &X, &terence_tao};
+  // List ls(arr);
+  // ASSERT_TRUE(X.match(alan_mathison_turing));
+  // ASSERT_TRUE(Y.match(ls));
+  // cout << Y.value() <<endl;
+  // cout << ls.value() <<endl;
+  // ASSERT_EQ("[496, alan_mathison_turing, terence_tao]", ls.value());
 }
 
 // Example:
@@ -169,12 +198,13 @@ TEST(List, matchVarinListToAtomShouldSucceed)
 // H = first, T = [second, third].
 TEST(List, headAndTailMatching1)
 {
-  // Atom f("first"), s("second"), t("third");
-  // vector<Term *> args = {&f, &s, &t};
-  // List l(args);
-
-  // EXPECT_EQ(string("first"), l.head()->symbol());
-  // EXPECT_EQ(string("[second, third]"), l.tail()->value());
+  Atom f("first");
+  Atom s("second");
+  Atom t("third");
+  vector<Term *> args = {&f, &s, &t};
+  List l(args);
+  EXPECT_EQ(string("first"), l.head()->symbol());
+  EXPECT_EQ(string("[second, third]"), l.tail()->value());
 }
 
 // Example:
@@ -182,24 +212,38 @@ TEST(List, headAndTailMatching1)
 // H = second, T = [third].
 TEST(List, headAndTailMatching2)
 {
-  // Atom f("first"), s("second"), t("third");
-  // vector<Term *> args = {&f, &s, &t};
-  // List l(args);
+  Atom f("first"), s("second"), t("third");
+  vector<Term *> args = {&f, &s, &t};
+  List l(args);
 
-  // EXPECT_EQ(string("second"), l.tail()->head()->value());
-  // EXPECT_EQ(string("[third]"), l.tail()->tail()->value());
+  EXPECT_EQ(string("second"), l.tail()->head()->value());
+  EXPECT_EQ(string("[third]"), l.tail()->tail()->value());
 }
 
 // ?- [[first], second, third] = [H|T].
 // H = [first], T = [second, third].
 TEST(List, headAndTailMatching3)
 {
+  Atom f("first"), s("second"), t("third");
+  vector<Term *> arr = {&f};
+  List ls(arr);
+  vector<Term *> arr1 = {&ls, &s, &t};
+  List ls1(arr1);
+
+  EXPECT_EQ(string("[first]"), ls1.head()->value());
+  EXPECT_EQ(string("[second, third]"), ls1.tail()->value());
 }
 
 // ?- [first, second, third] = [first, second, H|T].
 // H = third, T = [].
 TEST(List, headAndTailMatching4)
 {
+  Atom f("first"), s("second"), t("third");
+  vector<Term *> arr = {&f, &s, &t};
+  List l(arr);
+
+  EXPECT_EQ(string("third"), l.tail()->tail()->head()->value());
+  EXPECT_EQ(string("[]"), l.tail()->tail()->tail()->value());
 }
 
 // Given there is a empty list
@@ -207,13 +251,31 @@ TEST(List, headAndTailMatching4)
 // Then it should throw a string: "Accessing head in an empty list" as an exception.
 TEST(List, emptyExecptionOfHead)
 {
+  List ls;
+  try
+  {
+    ls.head();
+  }
+  catch (const string err)
+  {
+    EXPECT_EQ(string("Accessing head in an empty list"), err);
+  }
 }
 
 // Given there is a empty list
-// When client still want to get the head of list
+// When client still want to get the tail of list
 // Then it should throw a string: "Accessing tail in an empty list" as an exception.
 TEST(List, emptyExecptionOfTail)
 {
+  List ls;
+   try
+  {
+    ls.tail();
+  }
+  catch (const string err)
+  {
+    EXPECT_EQ(string("Accessing tail in an empty list"), err);
+  }
 }
 
 #endif

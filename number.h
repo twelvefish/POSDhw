@@ -14,6 +14,8 @@ public:
     if (a.isList)
     {
       return false;
+    }else{
+      return _symbol == a.symbol();
     }
   }
 };
