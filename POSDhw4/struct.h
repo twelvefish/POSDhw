@@ -2,7 +2,6 @@
 #define STRUCT_H
 
 #include "atom.h"
-#include "term.h"
 #include <vector>
 #include <string>
 

@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include "atom.h"
-#include "term.h"
 using std::string;
 
 class Variable : public Term
