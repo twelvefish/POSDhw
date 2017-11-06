@@ -4,52 +4,90 @@
 using std::string;
 
 #include "atom.h"
+#include "number.h"
 #include "variable.h"
 #include "global.h"
 #include "scanner.h"
 #include "struct.h"
-#include "term.h"
-#include "number.h"
+#include "list.h"
 
-class Parser{
+class Parser
+{
 public:
-  Parser(Scanner scanner) : _scanner(scanner){}
-  Term* createTerm(){
-    int token = _scanner.nextToken();
-    if(token == VAR){
+  Parser(Scanner scanner) : _scanner(scanner) {}
+  Term *createTerm()
+  {
+    token = _scanner.nextToken();
+    _scanner.skipLeadingWhiteSpace();
+    if (token == VAR)
+    {
       return new Variable(symtable[_scanner.tokenValue()].first);
-    }else if(token == NUMBER){
+    }
+    else if (token == NUMBER)
+    {
       return new Number(_scanner.tokenValue());
-    }else if(token == ATOM){
-        Atom* atom = new Atom(symtable[_scanner.tokenValue()].first);
-        if(_scanner.currentChar() == '(' ) {
-          _scanner.nextToken() ;
-          vector<Term*> terms = getArgs();
-          if(_currentToken == ')')
-            return new Struct(*atom, terms);
+    }
+    else if (token == ATOM)
+    {
+      Atom *atom = new Atom(symtable[_scanner.tokenValue()].first);
+      if (_scanner.currentChar() == '(')
+      {
+        _scanner.nextToken();
+        vector<Term *> terms = getArgs();
+        if (token == ')')
+          return new Struct(*atom, terms);
+      }
+      else
+        return atom;
+    }
+    else if (token == ATOMSC)
+    {
+      Atom *atom = new Atom(symtable[_scanner.tokenValue()].first);
+      if (_scanner.currentChar() == '(')
+      {
+        _scanner.nextToken();
+        vector<Term *> terms = getArgs();
+        if (token == ')')
+          return new Struct(*atom, terms);
+      }
+      else
+        return atom;
+    }
+    else if (token == '[')
+    {
+      if (_scanner.currentChar() != ']')
+      {
+        vector<Term *> terms = getArgs();
+        if (token == ']')
+        {
+          return new List(terms);
         }
-        else
-          return atom;
+      }
+      else if (_scanner.currentChar() == ']')
+      {
+        _scanner.nextToken();
+        vector<Term *> terms = {};
+        return new List(terms);
+      }
     }
     return nullptr;
   }
 
-  vector<Term*> getArgs()
+  vector<Term *> getArgs()
   {
-    Term* term = createTerm();
-    vector<Term*> args;
-    if(term)
+    Term *term = createTerm();
+    vector<Term *> args;
+    if (term)
       args.push_back(term);
-    while((_currentToken = _scanner.nextToken()) == ',') {
+    while ((token = _scanner.nextToken()) == ',')
+    {
       args.push_back(createTerm());
     }
     return args;
   }
 
-
-
 private:
   Scanner _scanner;
-  int _currentToken;
+  int token;
 };
 #endif
