@@ -2,7 +2,7 @@
 #define PARSER_H
 #include <string>
 using std::string;
-
+using namespace std;
 #include "atom.h"
 #include "number.h"
 #include "variable.h"
@@ -10,6 +10,7 @@ using std::string;
 #include "scanner.h"
 #include "struct.h"
 #include "list.h"
+#include <iostream>
 
 class Parser
 {
@@ -32,7 +33,13 @@ public:
       Atom *atom = new Atom(symtable[_scanner.tokenValue()].first);
       if (_scanner.currentChar() == '(')
       {
+
         _scanner.nextToken();
+        if (_scanner.currentChar() == ')')
+        {
+          _scanner.nextToken();
+          return new Struct(*atom);
+        }
         vector<Term *> terms = getArgs();
         if (token == ')')
           return new Struct(*atom, terms);
@@ -46,6 +53,11 @@ public:
       if (_scanner.currentChar() == '(')
       {
         _scanner.nextToken();
+        if (_scanner.currentChar() == ')')
+        {
+          _scanner.nextToken();
+          return new Struct(*atom);
+        }
         vector<Term *> terms = getArgs();
         if (token == ')')
           return new Struct(*atom, terms);

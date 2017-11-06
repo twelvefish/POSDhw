@@ -11,6 +11,9 @@ using std::string;
 class Struct : public Term
 {
 public:
+  Struct(Atom name) : _name(name)
+  {
+  }
 
   Struct(Atom name, std::vector<Term *> args) : _name(name)
   {
@@ -22,10 +25,11 @@ public:
     return _args[index];
   }
 
-  int arity(){
+  int arity()
+  {
     return _args.size();
   }
-  
+
   Atom &name()
   {
     return _name;
@@ -34,10 +38,12 @@ public:
   {
     string ret = _name.symbol() + "(";
     std::vector<Term *>::const_iterator it = _args.begin();
-    if (_args.size() == 0){
+    if (_args.empty())
+    {
       ret += ")";
       return ret;
     }
+
     for (; it != _args.end() - 1; ++it)
       ret += (*it)->symbol() + ", ";
     ret += (*it)->symbol() + ")";
@@ -47,6 +53,12 @@ public:
   {
     string ret = _name.symbol() + "(";
     std::vector<Term *>::const_iterator it = _args.begin();
+    if (_args.empty())
+    {
+      ret += ")";
+      return ret;
+    }
+
     for (; it != _args.end() - 1; ++it)
       ret += (*it)->value() + ", ";
     ret += (*it)->value() + ")";
@@ -60,7 +72,7 @@ public:
     }
   }
   bool isList = false;
-  
+
 private:
   Atom _name;
   std::vector<Term *> _args;
