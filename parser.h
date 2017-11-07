@@ -101,5 +101,6 @@ public:
 private:
   Scanner _scanner;
   int token;
+  
 };
 #endif
