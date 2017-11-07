@@ -73,6 +73,8 @@ public:
         if (token == ']')
         {
           return new List(terms);
+        }else{
+          throw string("unexpected token");
         }
       }
       else if (_scanner.currentChar() == ']')
@@ -101,6 +103,5 @@ public:
 private:
   Scanner _scanner;
   int token;
-  
 };
 #endif
