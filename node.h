@@ -11,6 +11,7 @@ public:
   Node(Operators op, Term *t, Node *l, Node *r):payload(op), term(t), left(l), right(r) {}
 
   bool evaluate() {
+
     if(payload == EQUALITY){
       return left->term->match(*(right->term));
     }
@@ -24,6 +25,7 @@ public:
       bool r = right->evaluate();
       return (l||r);
     }
+    return false;
   }
 
   Operators payload;

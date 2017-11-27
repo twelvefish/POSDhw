@@ -42,12 +42,26 @@ public:
 
     if (this == &term)
       return true;
-    if (!_inst)
+    else if (_inst == NULL)
     {
       _inst = &term;
       return true;
     }
-    return _inst->match(term);
+    else
+    {
+      Variable *var = dynamic_cast<Variable *>(&term);
+      if (var != nullptr)
+      {
+        if (var->_inst == NULL)
+        {
+          var->_inst = _inst;
+          return true;
+        }
+        else
+          _inst->match(*var);
+      }
+      return _inst->match(term);
+    }
   }
 
   Term *_inst;
