@@ -75,7 +75,7 @@ public:
   void matchings(){
     Term* term = createTerm();
     if(term!=nullptr)
-    { 
+    {
       if(isCOMMA==1){
         Term * findTerm = find(term);
         if(findTerm != nullptr) term->match(*findTerm);
@@ -83,9 +83,9 @@ public:
       _terms.push_back(term);
       while((_currentToken = _scanner.nextToken()) == ',' ||  _currentToken=='='|| _currentToken == ';') {
         if (_currentToken == '=') {
-          isCOMMA = 0;
+          isCOMMA = 1;
           Node * left = new Node(TERM, _terms.back(), nullptr, nullptr);
-          _terms.push_back(createTerm());          
+          _terms.push_back(createTerm());
           Node * right = new Node(TERM, _terms.back(), nullptr, nullptr);
           Node * root = new Node(EQUALITY, nullptr, left, right);
           _expressionTree = root;
@@ -96,11 +96,11 @@ public:
           matchings();
           Node * root = new Node(COMMA, nullptr, left, expressionTree());
           _expressionTree = root;
-          
         }
         else if(_currentToken == ';'){
           isCOMMA = 0;
           Node * left = _expressionTree;
+          size = _terms.size();
           matchings();
           Node * root = new Node(SEMICOLON, nullptr, left, expressionTree());
           _expressionTree = root;
@@ -110,8 +110,11 @@ public:
   }
 
   Term * find(Term * term){
-    for(int index = 0; index < _terms.size() ; index++){
-      if(_terms[index]->symbol() == term->symbol()) return _terms[index];
+    for(int index = size ; index < _terms.size() ; index++){
+      if(_terms[index]->symbol() == term->symbol()) {
+        size = 0;
+        return _terms[index];
+      }
       Struct * s = dynamic_cast<Struct*>(_terms[index]);
       if(s) {
         return findStruct(s,term);
@@ -121,8 +124,11 @@ public:
   }
 
   Term * findStruct(Struct * s, Term * term){
-    for(int i = 0; i < s->arity() ; i++){
-      if(s->args(i)->symbol() == term->symbol()) return s->args(i);
+    for(int i = size ; i < s->arity() ; i++){
+      if(s->args(i)->symbol() == term->symbol()) {
+        size = 0;
+        return s->args(i);
+      }
       Struct * ss = dynamic_cast<Struct*>(s->args(i));
       if(ss) {
         return findStruct(ss,term);
@@ -145,6 +151,10 @@ private:
     Term* term = createTerm();
     if(term!=nullptr)
     {
+      if(isCOMMA==1){
+        Term * findTerm = find(term);
+        if(findTerm != nullptr) term->match(*findTerm);
+      }
       _terms.push_back(term);
       while((_currentToken = _scanner.nextToken()) == ',') {
         _terms.push_back(createTerm());
@@ -157,5 +167,6 @@ private:
   int _currentToken;
   Node * _expressionTree;
   int isCOMMA = 0;
+  int size = 0;
 };
 #endif
