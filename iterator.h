@@ -150,6 +150,7 @@ private:
   T temp;
   queue<T> _BFSqueue;
   T _BFSTerms[20];
+  int text;
 };
 
 template <class T>
