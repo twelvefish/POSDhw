@@ -41,6 +41,9 @@
         "xmemory0": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "deque": "cpp"
     }
 }
