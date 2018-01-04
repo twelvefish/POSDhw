@@ -30,7 +30,7 @@ public:
   {
     if (!evaluate()){
       return "false";
-    }else if (evaluate() && _left->symbol() == _right->value()){
+    }else if (evaluate() && _left->symbol() == _right->symbol()){
       return "true";
     }else{
       return _left->symbol() + " = " + _right->value();
@@ -57,9 +57,9 @@ public:
   string result()
   {
     evaluate();
-    if (_right->result() == "false" || _right->result() == "true"){
+    if (_right->result() == "false"){
       return _left->result();
-    }else if (_left->result() == "false" || _left->result() == "true"){
+    }else if (_left->result() == "false"){
       return _right->result();
     }else{
       return _left->result() + "; " + _right->result();

@@ -1,6 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <gtest/gtest.h>
 #include <vector>
 #include <string>
 #include <stack>
@@ -23,11 +24,13 @@ public:
     int token = _scanner.nextToken();
     _currentToken = token;
     if(token == VAR){
-      for (int i = index; i < _varTable.size(); i++)
-        if (symtable[_scanner.tokenValue()].first == _varTable[i]->symbol())
-          return _varTable[i];
+      for (int i = 0; i < table.size(); i++){
+        if (symtable[_scanner.tokenValue()].first == table[i]->symbol()){
+          return table[i];
+        }
+      }
       Variable *variable = new Variable(symtable[_scanner.tokenValue()].first);
-      _varTable.push_back(variable);
+      table.push_back(variable);
       return variable;
     }else if(token == NUMBER){
       return new Number(_scanner.tokenValue());
@@ -98,6 +101,7 @@ public:
 
   void restDisjunctionMatch() {
     if (_scanner.currentChar() == ';') {
+      table.clear();
       createTerm();
       disjunctionMatch();
       Exp *right = _expStack.top();
@@ -177,7 +181,7 @@ private:
   Scanner _scanner;
   int _currentToken;
   stack<Exp *> _expStack;
-  vector<Variable *> _varTable;
+  vector<Variable *> table;
   int index;
 };
 #endif

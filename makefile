@@ -1,4 +1,4 @@
-all: hw8
+all: hw8 shell
 
 hw8: main.o atom.o struct.o list.o
 
@@ -6,6 +6,14 @@ ifeq (${OS}, Windows_NT)
 	g++ -o hw8 main.o atom.o list.o struct.o -lgtest
 else
 	g++ -o hw8 main.o atom.o list.o struct.o -lgtest -lpthread
+endif
+
+shell: mainShell.o atom.o struct.o list.o
+
+ifeq (${OS}, Windows_NT)
+	g++ -o shell mainShell.o atom.o list.o struct.o -lgtest
+else
+	g++ -o shell mainShell.o atom.o list.o struct.o -lgtest -lpthread
 endif
 
 atom.o: atom.cpp atom.h variable.h
@@ -22,6 +30,8 @@ struct.o:struct.cpp struct.h
 main.o: main.cpp utExpression.h utException.h 
 	g++ -std=gnu++0x -c main.cpp
 
+mainShell.o: mainShell.cpp 
+	g++ -std=gnu++0x -c mainShell.cpp
 
 #utTerm: mainTerm.o term.o struct.o var.o list.o
 #	g++ -o utTerm mainTerm.o term.o var.o struct.o list.o -lgtest -lpthread
