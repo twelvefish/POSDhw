@@ -1,20 +1,46 @@
-INC_DIR = include
-
 all: hw8
 
-hw8: main.o
-ifeq (${OS}, Windows_NT)
-	g++ -o hw8 main.o -lgtest
-else
-	g++ -o hw8 main.o -lgtest -lpthread
-endif
-	
-main.o: main.cpp exception.h expression.h atom.h number.h variable.h struct.h list.h scanner.h
-	g++ -std=gnu++0x -c main.cpp
+hw8: main.o atom.o struct.o list.o
 
-clean:	
+ifeq (${OS}, Windows_NT)
+	g++ -o hw8 main.o atom.o list.o struct.o -lgtest
+else
+	g++ -o hw8 main.o atom.o list.o struct.o -lgtest -lpthread
+endif
+
+atom.o: atom.cpp atom.h variable.h
+	g++ -std=c++11 -c atom.cpp
+list.o:list.cpp list.h
+		g++ -std=c++11 -c list.cpp
+struct.o:struct.cpp struct.h
+		g++ -std=c++11 -c struct.cpp
+#exp: mainExp.o
+#	g++ -o exp mainExp.o -lgtest -lpthread
+#mainExp.o: mainExp.cpp exp.h global.h
+#	g++ -std=c++11 -c mainExp.cpp
+
+main.o: main.cpp utExpression.h utException.h 
+	g++ -std=c++11 -c main.cpp
+
+
+#utTerm: mainTerm.o term.o struct.o var.o list.o
+#	g++ -o utTerm mainTerm.o term.o var.o struct.o list.o -lgtest -lpthread
+#mainTerm.o: mainTerm.cpp utTerm.h term.h var.h utStruct.h struct.h list.h utList.h
+#	g++ -std=c++11 -c mainTerm.cpp
+#term.o: term.h term.cpp
+#	g++ -std=c++11 -c term.cpp
+#struct.o: struct.h struct.cpp
+#	g++ -std=c++11 -c struct.cpp
+#var.o: var.h var.cpp
+#g++ -std=c++11 -c var.cpp
+#list.o: list.h list.cpp term.h var.h
+#	g++ -std=c++11 -c list.cpp
+clean:
 ifeq (${OS}, Windows_NT)
 	del *.o *.exe
 else
 	rm -f *.o hw8
 endif
+
+stat:
+	wc *.h *.cpp
