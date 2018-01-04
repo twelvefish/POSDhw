@@ -36,7 +36,6 @@ string& trim(string &s) {
     }
     int index = 0;
     string str="";
-    cout<<s<<endl;
     for(int i=0 ; i<s.size() ; i++){
         if(s[i] != ' '){
             index = i;
